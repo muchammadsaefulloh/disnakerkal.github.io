@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator Harga Barang</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Kalkulator Harga Barang</h1>
+        <img src="disnaker.png" alt="Kalkulator Harga Barang" width="300px" height="100px">
+
+        <table>
+            <tr>
+                <th>Nama Barang</th>
+                <th>Jumlah</th>
+                <th>Harga Beli</th>
+                <th>Harga Jual</th>
+            </tr>
+            <tr v-for="(barang, index) in daftarBarang" :key="index">
+                <td>{{ barang.nama }}</td>
+                <td><input type="number" v-model="barang.jumlah" @input="hitungKeuntungan" /></td>
+                <td>Rp {{ barang.harga_beli * barang.jumlah }}</td>
+                <td>Rp {{ barang.harga_jual * barang.jumlah }}</td>
+            </tr>
+            <tr>
+                <td colspan="2"><button @click="clearInput">Clear</button></td>
+                <td>Total Harga Beli: Rp {{ totalHargaBeli }}</td>
+                <td>Total Harga Jual: Rp {{ totalHargaJual }}</td>
+            </tr>
+            <tr>
+                <td colspan="4">Keuntungan: Rp {{ keuntungan }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
